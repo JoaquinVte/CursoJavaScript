@@ -31,3 +31,37 @@ console.log(cadenaMayor("Hola",3));
 // Crea un array con diferentes tipos de valores (números, strings, booleanos). 
 // A partir de dicho array recórrelo y genera otro array con dichos valores convertidos todos a número. 
 // Los que no hayan podido ser convertidos (NaN) no deberían estar en el array final. Imprime dicho array resultante por consola.
+
+var vector = new Array(1,2,3,"Cuatro","true",6,7,"false","nueve");
+var vectorNumeros = new Array();
+var indice=0;
+for (var idx in vector){
+	if (!isNaN(Number(vector[idx]))){
+		vectorNumeros[indice]=Number(vector[idx]);
+		indice++;
+	}
+}
+
+console.log(vectorNumeros);
+
+
+// Ejercicio 3
+// Haz lo mismo que en el apartado anterior pero usando los métodos nuevos de EcmaScript 5 (map, filter, ...)
+
+// Pista: Deberías primero generar un array con todos los valores convertidos a número (map), 
+// y a partir de este generar otro array filtrando los que no son NaN (filter).
+
+var vectorMap = new Array();
+var vectorFilter = new Array();
+
+vectorMap = vector.map(function(elemento){
+	return Number(elemento);
+});
+
+vectorFilter=vectorMap.filter(function(elemento){
+	if (!isNaN(elemento)){
+		return Number(elemento);
+	}
+});
+
+console.log(vectorFilter);
