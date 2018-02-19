@@ -78,3 +78,21 @@ console.log(vectorFilter);
 
 // Llama a la función varias veces, omitiendo parámetros, con todos ellos, y pasándo algún valor no númerico en el precio o impuesto.
 
+function  precioTotal (nombre, precio, impuesto){
+	var name = nombre || "Producto genérico";
+	var cost = precio || 100;
+	var tax = impuesto || 21;
+
+	if (isNaN(cost) || isNaN(tax)){
+		return "Error. El precio o impuesto no es un valor numerico.";
+	} else {
+		return "El coste de " + name + ", es de: " + (cost+(cost*tax/100)) +"€";
+	}
+
+}
+
+console.log(precioTotal("coche",15000,21));
+console.log(precioTotal(null,15000,21));
+console.log(precioTotal("coche",15000,"casa"));
+console.log(precioTotal());
+
