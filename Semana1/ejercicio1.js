@@ -5,6 +5,10 @@
 // Llama a la función 3 veces con diferentes parámetros. En una de esas llamadas pásale por parámetro un valor que no sea string.
 'use strict';
 
+console.log("--------------------------");
+console.log("Ejercicio 1");
+console.log("--------------------------");
+
 function cadenaMayor(cadena1,cadena2){
 	if (typeof cadena1 !== "string" || typeof cadena2 !== "string") {
 		return "Error!, alguna cadena no es un string";
@@ -32,13 +36,16 @@ console.log(cadenaMayor("Hola",3));
 // A partir de dicho array recórrelo y genera otro array con dichos valores convertidos todos a número. 
 // Los que no hayan podido ser convertidos (NaN) no deberían estar en el array final. Imprime dicho array resultante por consola.
 
-var vector = new Array(1,2,3,"Cuatro","true",6,7,"false","nueve");
+console.log("--------------------------");
+console.log("Ejercicio 2");
+console.log("--------------------------");
+
+var vector = new Array(1,2,3,"Cuatro",true,6,7,false,"nueve");
 var vectorNumeros = new Array();
-var indice=0;
+
 for (var idx in vector){
 	if (!isNaN(Number(vector[idx]))){
-		vectorNumeros[indice]=Number(vector[idx]);
-		indice++;
+		vectorNumeros.push(Number(vector[idx]));
 	}
 }
 
@@ -51,20 +58,16 @@ console.log(vectorNumeros);
 // Pista: Deberías primero generar un array con todos los valores convertidos a número (map), 
 // y a partir de este generar otro array filtrando los que no son NaN (filter).
 
-var vectorMap = new Array();
-var vectorFilter = new Array();
+console.log("--------------------------");
+console.log("Ejercicio 3");
+console.log("--------------------------");
 
-vectorMap = vector.map(function(elemento){
+console.log(vector.map(function(elemento){
 	return Number(elemento);
-});
+}).filter(function(elemento){
+	return !isNaN(elemento);
+}));
 
-vectorFilter=vectorMap.filter(function(elemento){
-	if (!isNaN(elemento)){
-		return Number(elemento);
-	}
-});
-
-console.log(vectorFilter);
 
 // Ejercicio 4
 // Crea una función que reciba 3 parámetros (nombre de producto, precio e impuesto en porcentaje sobre 100). 
@@ -77,6 +80,10 @@ console.log(vectorFilter);
 // Si son válidos, muestra por consola el nombre del producto y el precio final contando impuestos.
 
 // Llama a la función varias veces, omitiendo parámetros, con todos ellos, y pasándo algún valor no númerico en el precio o impuesto.
+
+console.log("--------------------------");
+console.log("Ejercicio 4");
+console.log("--------------------------");
 
 function  precioTotal (nombre, precio, impuesto){
 	var name = nombre || "Producto genérico";
@@ -96,6 +103,7 @@ console.log(precioTotal(null,15000,21));
 console.log(precioTotal("coche",15000,"casa"));
 console.log(precioTotal());
 
+
 // Ejercicio 5
 // Realiza los siguientes pasos (muestra por consola el resultado después de aplicar cada uno):
 
@@ -108,6 +116,11 @@ console.log(precioTotal());
 // Inserta 2 elementos más entre el penúltimo y el último
 
 // Muestra el array del paso anterior, pero con los elementos separados por "==>"
+
+console.log("--------------------------");
+console.log("Ejercicio 5");
+console.log("--------------------------");
+
 
 vector = new Array(1,2,3,4);
 console.log(vector);
