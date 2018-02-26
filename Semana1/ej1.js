@@ -157,3 +157,29 @@ let mensajes = [
     ['Cama', 'ERROR: El fabricante no tiene ese modelo'],
     ['Silla', 'Se ha borrado el producto de la base de datos']
 ];
+
+/**
+ * Genero un vector con los mensajes de error
+ */
+
+var mensajesError=mensajes.filter(function(elemento){
+	if (elemento[1].startsWith("ERROR")) {
+		return elemento
+	}
+});
+
+let mapErrores= new Map();
+for(let error of mensajesError){
+	if(!mapErrores.has(error[0])){
+		var erroresArray=new Array()
+		mapErrores.set(error[0],erroresArray.push(error[1].toString()));
+	}else{
+		mapErrores.set(error[0],erroresArray.push(error[1].toString()));		
+	}	
+}
+
+for(let entry of mapErrores) {
+ console.log(entry[0] + ": " + entry[1].join(", "));
+ }
+//console.log(mapErrores);
+
