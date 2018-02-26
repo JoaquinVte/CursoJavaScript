@@ -172,11 +172,9 @@ let mapErrores= new Map();
 for(let error of mensajesError){
 	if(!mapErrores.has(error[0])){
 		var erroresArray=new Array()
-		erroresArray.push(error[1]);
 		mapErrores.set(error[0],erroresArray);
-	}else{
-		mapErrores.get(error[0]).push(error[1]);		
-	}	
+	}
+	mapErrores.get(error[0]).push(error[1]);	
 }
 
 for(let entry of mapErrores) {
