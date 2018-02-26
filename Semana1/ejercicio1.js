@@ -126,9 +126,17 @@ console.log(vector.join("==>"));
  * La función simplemente mostrará por consola el nombre y los trabajos recorriéndolos con un for..of
  */
 
-
-
 console.log('--------------- APARTADO 6 -----------------');
+
+function printTrabajos(nombre, ...oficios){
+	let trabajos="";
+	for(let oficio of oficios){
+		trabajos=trabajos+oficio+" ";
+	}
+	return "Los trabajos que ha realizado " + nombre + " son: " + trabajos;
+}
+
+console.log(printTrabajos("Pepe", "Albañil", "Programador", "Buscador de tesoros"));
 
 /**
  * Apartado 7
