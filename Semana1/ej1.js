@@ -168,7 +168,11 @@ var mensajesError=mensajes.filter(function(elemento){
 	}
 });
 
-let mapErrores= new Map();
+/**
+ * Genero un Map con los distintos mensajes para cada key
+ */
+
+var mapErrores= new Map();
 for(let error of mensajesError){
 	if(!mapErrores.has(error[0])){
 		var erroresArray=new Array()
@@ -177,8 +181,13 @@ for(let error of mensajesError){
 	mapErrores.get(error[0]).push(error[1]);	
 }
 
+/**
+ * Recorremos el Map para visualizar su contenido
+ */
+
 for(let entry of mapErrores) {
  console.log(entry[0] + ": " + entry[1].join(", "));
 }
+
 console.log(mapErrores);
 
