@@ -92,6 +92,9 @@ function  precioTotal (nombre, precio, impuesto){
 
 }
 
+console.log(precioTotal());
+console.log(precioTotal("Coche",15000,7));
+console.log(precioTotal("Coche","dosmil",));
 
 /**
  * Apartado 5
@@ -169,7 +172,8 @@ var mensajesError=mensajes.filter(function(elemento){
 });
 
 /**
- * Genero un Map con los distintos mensajes para cada key
+ * Genero un Map con los distintos mensajes para cada key siendo la key el 
+ * nombre del producto y su valor un vector con los distintos mensajes de error
  */
 
 var erroresMap = new Map();
