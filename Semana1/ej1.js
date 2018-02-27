@@ -172,7 +172,7 @@ var mensajesError=mensajes.filter(function(elemento){
 });
 
 /**
- * Genero un Map con los distintos mensajes para cada key siendo la key el 
+ * Genero un Map con los distintos mensajes para cada key, siendo la key el 
  * nombre del producto y su valor un vector con los distintos mensajes de error
  */
 
