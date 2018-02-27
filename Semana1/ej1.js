@@ -167,7 +167,7 @@ let mensajes = [
 
 var mensajesError=mensajes.filter(function(elemento){
 	if (elemento[1].startsWith("ERROR")) {
-		return elemento
+		return elemento;
 	}
 });
 
