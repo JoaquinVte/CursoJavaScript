@@ -13,4 +13,4 @@ var persona = {
         }
     ]
 }
-console.log(persona.trabajos[1].descripción); 
+console.log(persona); 
