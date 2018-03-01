@@ -13,4 +13,16 @@ var persona = {
         }
     ]
 }
-console.log(persona.trabajos[1].descripción); 
+console.log(persona.trabajos[1].descripción);
+
+var now = new Date();
+
+console.log(now);
+now.setHours(now.getHours() + 2);
+console.log(now);
+
+var str = "I am amazed in America";
+var reg = /am/gi;
+console.log(reg.exec(str)); // Imprime ["am", index: 2, input: "I am amazed in America"]
+console.log(reg.exec(str)); // Imprime ["am", index: 5, input: "I am amazed in America"]
+console.log(reg.exec(str)); // Imprime ["Am", index: 15, input: "I am amaz
