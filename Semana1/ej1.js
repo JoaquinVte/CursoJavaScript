@@ -87,7 +87,19 @@ function  precioTotal (nombre, precio, impuesto){
 	if (isNaN(cost) || isNaN(tax)){
 		return "Error. El precio o impuesto no es un valor numerico.";
 	} else {
-		return "El coste de " + name + ", es de: " + (cost+(cost*tax/100)) +"€";
+		return "El coste de " + name + ", es
+		'use strict';var persona = {    nombre: "Peter",    edad: 41,    trabajos: [ // trabajos es un array de objetos JSON        {            descripción: "Payaso triste",            duración: "2003-2005"        },        {            descripción: "Sexador de pollos",            duración: "2005-2015"
+		￼
+		PROBLEMAS
+		3
+		SALIDA
+		CONSOLA DE DEPURACIÓN
+		TERMINAL
+		￼
+		git rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbosegit status -z -ugit symbolic-ref --short HEADgit rev-parse mastergit rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbosegit show :Semana2/pruebas.jsgit checkout -q -- /home/joaalsai/CursoJavaScript/Semana2/pruebas.jsgit status -z -ugit symbolic-ref --short HEADgit rev-parse mastergit rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbosegit status -z -ugit symbolic-ref --short HEADgit rev-parse mastergit rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbosegit show :Semana2/pruebas.jsgit status -z -ugit symbolic-ref --short HEADgit rev-parse mastergit rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbose ￼
+		Lín. 19, Col. 46Espacios: 4UTF-8LFJavaScript master30
+		Descargar ahoraMás tardeNotas de la versión
+		Información de: " + (cost+(cost*tax/100)) +"€";
 	}
 
 }
@@ -98,7 +110,19 @@ console.log(precioTotal("Coche","dosmil",));
 
 /**
  * Apartado 5
- * Realiza los siguientes pasos (muestra por consola el resultado después de aplicar cada uno):
+ * Realiza los siguientes pasos (muestra por
+'use strict';var persona = {    nombre: "Peter",    edad: 41,    trabajos: [ // trabajos es un array de objetos JSON        {            descripción: "Payaso triste",            duración: "2003-2005"        },        {            descripción: "Sexador de pollos",            duración: "2005-2015"
+￼
+PROBLEMAS
+3
+SALIDA
+CONSOLA DE DEPURACIÓN
+TERMINAL
+￼
+git rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbosegit status -z -ugit symbolic-ref --short HEADgit rev-parse mastergit rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbosegit show :Semana2/pruebas.jsgit checkout -q -- /home/joaalsai/CursoJavaScript/Semana2/pruebas.jsgit status -z -ugit symbolic-ref --short HEADgit rev-parse mastergit rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbosegit status -z -ugit symbolic-ref --short HEADgit rev-parse mastergit rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbosegit show :Semana2/pruebas.jsgit status -z -ugit symbolic-ref --short HEADgit rev-parse mastergit rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbose ￼
+Lín. 19, Col. 46Espacios: 4UTF-8LFJavaScript master30
+Descargar ahoraMás tardeNotas de la versión
+Información consola el resultado después de aplicar cada uno):
  * - Crea un array con 4 elementos
  * - Concatena 2 elementos más al final y 2 al principio
  * - Elimina las posiciones de la 3 a la 5 (incluida)
@@ -128,6 +152,18 @@ console.log(vector.join("==>"));
  * Posible llamada -> printTrabajos("Pepe", "Albañil", "Programador", "Buscador de tesoros")
  * La función simplemente mostrará por consola el nombre y los trabajos recorriéndolos con un for..of
  */
+'use strict';var persona = {    nombre: "Peter",    edad: 41,    trabajos: [ // trabajos es un array de objetos JSON        {            descripción: "Payaso triste",            duración: "2003-2005"        },        {            descripción: "Sexador de pollos",            duración: "2005-2015"
+￼
+PROBLEMAS
+3
+SALIDA
+CONSOLA DE DEPURACIÓN
+TERMINAL
+￼
+git rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbosegit status -z -ugit symbolic-ref --short HEADgit rev-parse mastergit rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbosegit show :Semana2/pruebas.jsgit checkout -q -- /home/joaalsai/CursoJavaScript/Semana2/pruebas.jsgit status -z -ugit symbolic-ref --short HEADgit rev-parse mastergit rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbosegit status -z -ugit symbolic-ref --short HEADgit rev-parse mastergit rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbosegit show :Semana2/pruebas.jsgit status -z -ugit symbolic-ref --short HEADgit rev-parse mastergit rev-parse --symbolic-full-name --abbrev-ref master@{u}git rev-list --left-right master...origin/mastergit for-each-ref --format %(refname) %(objectname) --sort -committerdategit remote --verbose ￼
+Lín. 19, Col. 46Espacios: 4UTF-8LFJavaScript master30
+Descargar ahoraMás tardeNotas de la versión
+Información
 
 console.log('--------------- APARTADO 6 -----------------');
 
