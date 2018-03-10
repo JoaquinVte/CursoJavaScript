@@ -2,48 +2,49 @@
 
 // WRITE ONLY HERE
 
-let comprobarCampos = function (event) {
-
-    let valido = true;
-    let eventos = document.getElementById("eventsContainer");
-
-    let reg = /([a-z]|[A-Z])(\w+)?/;
+let comprobarNombre = function (event) {
     let nombre = document.getElementById("name");
     console.log(nombre.value);
-    if (nombre.value.length == 0 || !reg.test(nombre.value)) {
+    if (nombre.value.length == 0 || !/([a-z]|[A-Z])(\w+)?/.test(nombre.value)) {
         nombre.className = nombre.getAttribute("class") + " is-invalid";
         valido = false;
     } else {
         nombre.className = nombre.getAttribute("class") + " is-valid";
     }
-    console.log(reg.test(nombre.value));
-    console.log(nombre.value);
+}
 
-    let descripcion = document.getElementById("description");
-    if (descripcion.value.length == 0 || !reg.test(descripcion.value)) {
-        descripcion.className = descripcion.getAttribute("class") + " is-invalid";
-        valido = false;
-    } else {
-        descripcion.className = descripcion.getAttribute("class") + " is-valid";
-    }
-
-    reg = new RegExp("^(\d{2}|\d{4})\/\d{2}\/\d{2}$");
+let comprobarFecha = function (event) {
     let fecha = document.getElementById("date");
-    if (fecha.value.length == 0 || !reg.test(fecha.value)) {
+    if (fecha.value.length == 0 || !/^(\d{2}|\d{4})\/\d{2}\/\d{2}$/.test(fecha.value)) {
         fecha.className = fecha.getAttribute("class") + " is-invalid";
         valido = false;
     } else {
         fecha.className = fecha.getAttribute("class") + " is-valid";
     }
+}
 
-    reg = new RegExp("10000(.[0]{1,2})|[0-9]{4}(.[0-9]{1,2})?");
+let comprobarDescripcion = function (event) {
+    let descripcion = document.getElementById("description");
+    if (descripcion.value.length == 0 || !/([a-z]|[A-Z])(\w+)?/.test(descripcion.value)) {
+        descripcion.className = descripcion.getAttribute("class") + " is-invalid";
+        valido = false;
+    } else {
+        descripcion.className = descripcion.getAttribute("class") + " is-valid";
+    }
+}
+
+let comprobarPrecio = function (event) {
     let precio = document.getElementById("price");
-    if (precio.value.length == 0 || !reg.test(precio.value)) {
+    if (precio.value.length == 0 || !/10000(.[0]{1,2})|[0-9]{4}(.[0-9]{1,2})?/.test(precio.value)) {
         precio.className = precio.getAttribute("class") + " is-invalid";
         valido = false;
     } else {
         precio.className = precio.getAttribute("class") + " is-valid";
     }
+}
+let comprobarCampos = function (event) {
+
+
     // <!-- <div class="card-deck mb-2">
     //     <div class="card">
     //       <img class="card-img-top" src="image_base64">
@@ -74,6 +75,18 @@ let comprobarCampos = function (event) {
     }
 
 }
+
+let inputName = document.getElementById("name");
+inputName.addEventListener('change', comprobarNombre);
+
+let inputFecha = document.getElementById("date");
+inputFecha.addEventListener('change', comprobarFecha);
+
+let inputDescripcion = document.getElementById("description");
+inputDescripcion.addEventListener('change', comprobarDescripcion);
+
+let inputPrecio = document.getElementById("price");
+inputPrecio.addEventListener('change', comprobarPrecio);
 
 let button_primary = document.getElementsByTagName("button")[0];
 button_primary.addEventListener('click', comprobarCampos);
