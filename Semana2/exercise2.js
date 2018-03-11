@@ -15,7 +15,7 @@ let comprobarNombre = function (event) {
 }
 let comprobarFecha = function (event) {
     let fecha = document.getElementById("date");
-    if (fecha.value.length == 0 || !/^(\d{2}|\d{4})\/\d{2}\/\d{2}$/.test(fecha.value)) {
+    if (fecha.value.length == 0 || !/^(\d{2}|\d{4})-\d{2}-\d{2}$/.test(fecha.value)) {
         fecha.className = fecha.getAttribute("class") + " is-invalid";
         valido = false;
     } else {
@@ -53,11 +53,11 @@ let comprobarCampos = function (event) {
     valido = true;
     let contenedor = document.getElementById("eventsContainer");
 
-    // comprobarNombre(this);
-    // comprobarFecha(this);
-    // comprobarDescripcion(this);
-    // comprobarPrecio(this);
-    // comprobarImagen(this);
+    comprobarNombre(this);
+    comprobarFecha(this);
+    comprobarDescripcion(this);
+    comprobarPrecio(this);
+    comprobarImagen(this);
 
     if (valido) {
         console.log(document.querySelectorAll(".card-deck:last-of-type").length);
@@ -125,20 +125,20 @@ let completarCard = function (card) {
     cardBody.setAttribute("class", "card-body");
     cardBody.appendChild(document.createElement("h4"));
     cardBody.children[0].setAttribute("class", "card-title");
-    // cardBody.children[0].textContent = document.getElementById("name").value;
+    cardBody.children[0].textContent = document.getElementById("name").value;
     cardBody.appendChild(document.createElement("p"));
     cardBody.children[1].setAttribute("class", "card-text");
-    // cardBody.children[1].textContent = document.getElementById("description").value;
+    cardBody.children[1].textContent = document.getElementById("description").value;
 
     card.appendChild(document.createElement("div"));
     let cardFooter = card.children[2]
     cardFooter.setAttribute("class", "card-footer");
     cardFooter.appendChild(document.createElement("small"));
     cardFooter.children[0].setAttribute("class", "text-muted");
-    // cardFooter.children[0].value = document.getElementById("date").value;
+    cardFooter.children[0].textContent = document.getElementById("date").value;
     cardFooter.children[0].appendChild(document.createElement("span"));
     cardFooter.children[0].children[0].setAttribute("class", "float-right");
-    // cardFooter.children[0].children[0].value = document.getElementById("price").value;
+    cardFooter.children[0].children[0].value = document.getElementById("price").value;
 
     borrarCampos()
 }
