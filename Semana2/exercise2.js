@@ -1,15 +1,16 @@
 "use strict";
 
 // WRITE ONLY HERE
+let valido;
 
 let comprobarNombre = function (event) {
+
     let nombre = document.getElementById("name");
-    console.log(nombre.value);
     if (nombre.value.length == 0 || !/([a-z]|[A-Z])(\w+)?/.test(nombre.value)) {
-        nombre.className = nombre.getAttribute("class") + " is-invalid";
+        nombre.className = "form-control is-invalid";
         valido = false;
     } else {
-        nombre.className = nombre.getAttribute("class") + " is-valid";
+        nombre.className = "form-control is-valid";
     }
 }
 
@@ -19,31 +20,49 @@ let comprobarFecha = function (event) {
         fecha.className = fecha.getAttribute("class") + " is-invalid";
         valido = false;
     } else {
-        fecha.className = fecha.getAttribute("class") + " is-valid";
+        fecha.className = "form-control is-valid";
     }
 }
 
 let comprobarDescripcion = function (event) {
     let descripcion = document.getElementById("description");
     if (descripcion.value.length == 0 || !/([a-z]|[A-Z])(\w+)?/.test(descripcion.value)) {
-        descripcion.className = descripcion.getAttribute("class") + " is-invalid";
+        descripcion.className = "form-control is-invalid";
         valido = false;
     } else {
-        descripcion.className = descripcion.getAttribute("class") + " is-valid";
+        descripcion.className = "form-control is-valid";
     }
 }
 
 let comprobarPrecio = function (event) {
     let precio = document.getElementById("price");
     if (precio.value.length == 0 || !/10000(.[0]{1,2})|[0-9]{4}(.[0-9]{1,2})?/.test(precio.value)) {
-        precio.className = precio.getAttribute("class") + " is-invalid";
+        precio.className = "form-control is-invalid";
         valido = false;
     } else {
-        precio.className = precio.getAttribute("class") + " is-valid";
+        precio.className = "form-control is-valid";
     }
 }
-let comprobarCampos = function (event) {
 
+let comprobarImagen = function (event) {
+    let imagen = document.getElementById("image");
+    let imagenPreview = document.getElementById("imgPreview");
+    if (imagenPreview.getAttribute("src") == "") {
+        imagen.className="form-control is-invalid";
+    } else {
+        imagen.className="form-control is-valid";
+    }
+}
+
+let comprobarCampos = function (event) {
+    valido=true;
+    let Contenedor=document.getElementById("eventsContainer");
+    
+    // comprobarNombre(this);
+    // comprobarFecha(this);
+    // comprobarDescripcion(this);
+    // comprobarPrecio(this);
+    // comprobarImagen(this);
 
     // <!-- <div class="card-deck mb-2">
     //     <div class="card">
@@ -60,18 +79,21 @@ let comprobarCampos = function (event) {
     //       </div>
     //     </div>
     //   </div> -->
-    if (valido) {
-        let newCard = document.createElement("div").setAttribute("class", "card");
-        newCard.appendChild(document.createElement("img").setAttribute("class", "card-img-top").setAttribute("src", "image_base64"));
-        newCard.appendChild(document.createElement("div").setAttribute("class", "card-body"));
-        newCard.appendChild(document.createElement("div").setAttribute("class", "card-footer"));
-        let elemento = newCard.childNodes[1];
-        elemento.appendChild(document.createElement("h4").setAttribute("class", "card-title"));
-        elemento.childNodes[0].innerText = nombre.value;
-        elemento.appendChild(document.createElement("p").setAttribute("class", "card-text"));
-        elemento.childNodes[1].innerText = descripcion.value;
-        elemento = newCard.nextSibling;
 
+
+    if (valido) {
+        
+        Contenedor.appendChild(document.createElement("div"));                        
+        
+        // newCard.appendChild(document.createElement("img").setAttribute("class", "card-img-top").setAttribute("src", "image_base64"));
+        // newCard.appendChild(document.createElement("div").setAttribute("class", "card-body"));
+        // newCard.appendChild(document.createElement("div").setAttribute("class", "card-footer"));
+        // let elemento = newCard.childNodes[1];
+        // elemento.appendChild(document.createElement("h4").setAttribute("class", "card-title"));
+        // elemento.childNodes[0].innerText = nombre.value;
+        // elemento.appendChild(document.createElement("p").setAttribute("class", "card-text"));
+        // elemento.childNodes[1].innerText = descripcion.value;
+        // elemento = newCard.nextSibling;
     }
 
 }
@@ -87,6 +109,10 @@ inputDescripcion.addEventListener('change', comprobarDescripcion);
 
 let inputPrecio = document.getElementById("price");
 inputPrecio.addEventListener('change', comprobarPrecio);
+
+let inputImagen = document.getElementById("image");
+inputPrecio.addEventListener('change', comprobarImagen);
+
 
 let button_primary = document.getElementsByTagName("button")[0];
 button_primary.addEventListener('click', comprobarCampos);
