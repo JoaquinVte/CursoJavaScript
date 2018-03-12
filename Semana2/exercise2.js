@@ -53,11 +53,11 @@ let comprobarCampos = function (event) {
     valido = true;
     let contenedor = document.getElementById("eventsContainer");
 
-    comprobarNombre(this);
-    comprobarFecha(this);
-    comprobarDescripcion(this);
-    comprobarPrecio(this);
-    comprobarImagen(this);
+        // comprobarNombre(this);
+        // comprobarFecha(this);
+        // comprobarDescripcion(this);
+        // comprobarPrecio(this);
+        // comprobarImagen(this);
 
     if (valido) {
         console.log(document.querySelectorAll(".card-deck:last-of-type").length);
@@ -102,7 +102,12 @@ let inputImagen = document.getElementById("image");
 inputPrecio.addEventListener('change', comprobarImagen);
 
 let button_primary = document.getElementsByTagName("button")[0];
-button_primary.addEventListener('click', comprobarCampos);
+// button_primary.addEventListener('submit', comprobarCampos);
+
+button_primary.addEventListener('submit',evento => {
+    evento.preventDefault();
+    comprobarCampos(evento); 
+})
 
 newEvent.image.addEventListener('change', event => {
     let file = event.target.files[0];
