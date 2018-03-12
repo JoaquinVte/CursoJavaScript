@@ -53,22 +53,21 @@ let comprobarCampos = function (event) {
     valido = true;
     let contenedor = document.getElementById("eventsContainer");
 
-        // comprobarNombre(this);
-        // comprobarFecha(this);
-        // comprobarDescripcion(this);
-        // comprobarPrecio(this);
-        // comprobarImagen(this);
+    comprobarNombre(this);
+    comprobarFecha(this);
+    comprobarDescripcion(this);
+    comprobarPrecio(this);
+    comprobarImagen(this);
 
+    // Compruebo si existe algun <div class="card-deck">
     if (valido) {
-        console.log(document.querySelectorAll(".card-deck:last-of-type").length);
-        console.log(document.querySelectorAll(".card-deck:last-of-type").children);
-        console.log("-------------------------");
         if (document.querySelectorAll(".card-deck:last-of-type").length == 0) {
             contenedor.appendChild(document.createElement("div"));
             let nodoCardDeck = contenedor.children[0]
             nodoCardDeck.setAttribute("class", "card-deck");
             nodoCardDeck.appendChild(document.createElement("div"));
             completarCard(nodoCardDeck.children[0]);
+        // Si existe algun <div class="card-deck">, compruebo si debe ir en el existente o uno nuevo
         } else {
             if (document.querySelectorAll(".card-deck:last-of-type")[0].childNodes.length == 1) {
                 let nodoCardDeck = document.querySelectorAll(".card-deck:last-of-type")[0];
@@ -102,12 +101,12 @@ let inputImagen = document.getElementById("image");
 inputPrecio.addEventListener('change', comprobarImagen);
 
 let button_primary = document.getElementsByTagName("button")[0];
-// button_primary.addEventListener('submit', comprobarCampos);
+button_primary.addEventListener('submit', comprobarCampos);
 
-button_primary.addEventListener('submit',evento => {
-    evento.preventDefault();
-    comprobarCampos(evento); 
-})
+// button_primary.addEventListener('submit', evento => {
+//     evento.preventDefault();
+//     comprobarCampos(evento);
+// })
 
 newEvent.image.addEventListener('change', event => {
     let file = event.target.files[0];
@@ -118,6 +117,8 @@ newEvent.image.addEventListener('change', event => {
     });
 });
 
+// Esta funcion recibe un <div> y lo transforma en un <div class="card"> con su estructura segun se 
+// pide en el ejercicio.
 let completarCard = function (card) {
     card.setAttribute("class", "card");
 
@@ -148,23 +149,24 @@ let completarCard = function (card) {
     borrarCampos()
 }
 
+// Esta funcion borra los campos del formulario y resetea los atributos class modificados
 function borrarCampos() {
-  
-    document.getElementById("name").className="form-control";
-    document.getElementById("name").value="";
 
-    document.getElementById("date").className="form-control";
-    document.getElementById("date").value="";
+    document.getElementById("name").className = "form-control";
+    document.getElementById("name").value = "";
 
-    document.getElementById("description").className="form-control";
-    document.getElementById("description").value="";
+    document.getElementById("date").className = "form-control";
+    document.getElementById("date").value = "";
 
-    document.getElementById("price").className="form-control";
-    document.getElementById("price").value="";
+    document.getElementById("description").className = "form-control";
+    document.getElementById("description").value = "";
 
-    document.getElementById("image").className="form-control";
-    document.getElementById("imgPreview").setAttribute("src","");
-    document.getElementById("image").type='';
-    document.getElementById("image").type='file';
+    document.getElementById("price").className = "form-control";
+    document.getElementById("price").value = "";
+
+    document.getElementById("image").className = "form-control";
+    document.getElementById("imgPreview").setAttribute("src", "");
+    document.getElementById("image").type = '';
+    document.getElementById("image").type = 'file';
 }
 
