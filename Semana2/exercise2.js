@@ -45,46 +45,61 @@ let comprobarImagen = function (event) {
     let imagenPreview = document.getElementById("imgPreview");
     if (imagenPreview.getAttribute("src") == "") {
         imagen.className = "form-control is-invalid";
+        valido = false;
     } else {
         imagen.className = "form-control is-valid";
     }
 }
 let comprobarCampos = function (event) {
+
+    event.preventDefault();
+
+    // La variable valido indica si todos los campos son correctos. Esta variable puede ser modificada por las
+    // funciones de validacion de cada campo
     valido = true;
+
+    // La variable contenedor almacena el nodo donde estaran todos los eventos generados
     let contenedor = document.getElementById("eventsContainer");
 
+    // Validamos los diferentes campos. Al finalizar la variable valido indicara si todos los campos son correctos.
     comprobarNombre(this);
     comprobarFecha(this);
     comprobarDescripcion(this);
     comprobarPrecio(this);
     comprobarImagen(this);
 
-    // Compruebo si existe algun <div class="card-deck">
+
     if (valido) {
+        // Compruebo si existe algun <div class="card-deck"> en la estructura
         if (document.querySelectorAll(".card-deck:last-of-type").length == 0) {
+            // Creamos el primer card-deck y su hijo card. Este ultimo es enviado a la funcion completarCard para
+            // ser rellenado con los campos del formulario
             contenedor.appendChild(document.createElement("div"));
             let nodoCardDeck = contenedor.children[0]
             nodoCardDeck.setAttribute("class", "card-deck");
             nodoCardDeck.appendChild(document.createElement("div"));
             completarCard(nodoCardDeck.children[0]);
-        // Si existe algun <div class="card-deck">, compruebo si debe ir en el existente o uno nuevo
         } else {
+            // Compruebo si el ultimo card-deck contiene un hijo card, en caso afirmativo creo el 2º hijo y se envia
+            // a la funcion completarCard para ser rellenado con los campos del formulario
             if (document.querySelectorAll(".card-deck:last-of-type")[0].childNodes.length == 1) {
                 let nodoCardDeck = document.querySelectorAll(".card-deck:last-of-type")[0];
                 nodoCardDeck.appendChild(document.createElement("div"));
                 completarCard(nodoCardDeck.children[1]);
             } else {
+                // El ultimo card-deck esta completo y creamos uno nuevo, junto con su hijo card. Este ultimo es enviado 
+                // a la funcion completarCard para ser rellenado con los campos del formulario
                 let nodoCardDeck = document.createElement("div")
                 nodoCardDeck.setAttribute("class", "card-deck");
                 contenedor.appendChild(nodoCardDeck);
                 nodoCardDeck.appendChild(document.createElement("div"));
                 completarCard(nodoCardDeck.children[0]);
             }
-
         }
     }
 }
 
+// Añadimos lo manejadores de eventos
 let inputName = document.getElementById("name");
 inputName.addEventListener('change', comprobarNombre);
 
@@ -100,13 +115,8 @@ inputPrecio.addEventListener('change', comprobarPrecio);
 let inputImagen = document.getElementById("image");
 inputPrecio.addEventListener('change', comprobarImagen);
 
-let button_primary = document.getElementsByTagName("button")[0];
-button_primary.addEventListener('submit', comprobarCampos);
-
-// button_primary.addEventListener('submit', evento => {
-//     evento.preventDefault();
-//     comprobarCampos(evento);
-// })
+let formulario = document.getElementById("newEvent");
+formulario.addEventListener('submit', comprobarCampos);
 
 newEvent.image.addEventListener('change', event => {
     let file = event.target.files[0];
@@ -114,6 +124,7 @@ newEvent.image.addEventListener('change', event => {
     if (file) reader.readAsDataURL(file);
     reader.addEventListener('load', e => {
         document.getElementById("imgPreview").src = reader.result;
+        comprobarImagen(event);
     });
 });
 
