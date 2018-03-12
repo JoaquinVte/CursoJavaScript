@@ -3,37 +3,41 @@
 // WRITE ONLY HERE
 let valido;
 
+//Nombre → Requerido (sólo puede contener letras y espacios y empezar por letra)
 let comprobarNombre = function (event) {
     let nombre;
     nombre = document.getElementById("name");
-    if (nombre.value.length == 0 || !/([a-z]|[A-Z])(\w+)?/.test(nombre.value)) {
+    if (nombre.value.length == 0 || /^[^a-z]|[^a-z\s]/i.test(nombre.value)) {
         nombre.className = "form-control is-invalid";
         valido = false;
     } else {
         nombre.className = "form-control is-valid";
     }
 }
+// Fecha → Requerida (formato: YYYY-mm-dd)
 let comprobarFecha = function (event) {
     let fecha = document.getElementById("date");
-    if (fecha.value.length == 0 || !/^(\d{2}|\d{4})-\d{2}-\d{2}$/.test(fecha.value)) {
+    if (fecha.value.length == 0 || !/^\d{4}-\d{2}-\d{2}$/.test(fecha.value)) {
         fecha.className = fecha.getAttribute("class") + " is-invalid";
         valido = false;
     } else {
         fecha.className = "form-control is-valid";
     }
 }
+// Descripción → Requerida (contener al menos un carácter que no sea espacio)
 let comprobarDescripcion = function (event) {
     let descripcion = document.getElementById("description");
-    if (descripcion.value.length == 0 || !/([a-z]|[A-Z])(\w+)?/.test(descripcion.value)) {
+    if (descripcion.value.length == 0 || !/^[^\s]/.test(descripcion.value)) {
         descripcion.className = "form-control is-invalid";
         valido = false;
     } else {
         descripcion.className = "form-control is-valid";
     }
 }
+// Precio → Requerido (Número entero o con 2 decimales)
 let comprobarPrecio = function (event) {
     let precio = document.getElementById("price");
-    if (precio.value.length == 0 || !/10000(.[0]{1,2})|[0-9]{4}(.[0-9]{1,2})?/.test(precio.value)) {
+    if (precio.value.length == 0 || !/^\d+(,[0-9]{1,2})?$/.test(precio.value)) {
         precio.className = "form-control is-invalid";
         valido = false;
     } else {
@@ -50,7 +54,9 @@ let comprobarImagen = function (event) {
         imagen.className = "form-control is-valid";
     }
 }
-let comprobarCampos = function (event) {
+
+// Funcion encargada de añadir un nuevo evento si corresponde
+let añadirEvento = function (event) {
 
     event.preventDefault();
 
@@ -113,10 +119,10 @@ let inputPrecio = document.getElementById("price");
 inputPrecio.addEventListener('change', comprobarPrecio);
 
 let inputImagen = document.getElementById("image");
-inputPrecio.addEventListener('change', comprobarImagen);
+inputPrecio.addEventListener('blur', comprobarImagen);
 
 let formulario = document.getElementById("newEvent");
-formulario.addEventListener('submit', comprobarCampos);
+formulario.addEventListener('submit', añadirEvento);
 
 newEvent.image.addEventListener('change', event => {
     let file = event.target.files[0];
@@ -152,32 +158,30 @@ let completarCard = function (card) {
     cardFooter.setAttribute("class", "card-footer");
     cardFooter.appendChild(document.createElement("small"));
     cardFooter.children[0].setAttribute("class", "text-muted");
-    cardFooter.children[0].textContent = document.getElementById("date").value;
+
+    // Transforma la fecha al formato dd/mm/YYYY creando un objeto Date con la fecha introducida y
+    // generando la cadena con el formato pedido 
+    let fechaEvento = new Date(document.getElementById("date").value);
+    cardFooter.children[0].textContent = fechaEvento.toLocaleDateString();
+
     cardFooter.children[0].appendChild(document.createElement("span"));
     cardFooter.children[0].children[0].setAttribute("class", "float-right");
     cardFooter.children[0].children[0].value = document.getElementById("price").value;
 
+    // Reiniciamos el formulario
     borrarCampos()
 }
 
 // Esta funcion borra los campos del formulario y resetea los atributos class modificados
 function borrarCampos() {
 
-    document.getElementById("name").className = "form-control";
-    document.getElementById("name").value = "";
-
-    document.getElementById("date").className = "form-control";
-    document.getElementById("date").value = "";
-
-    document.getElementById("description").className = "form-control";
-    document.getElementById("description").value = "";
-
-    document.getElementById("price").className = "form-control";
-    document.getElementById("price").value = "";
-
-    document.getElementById("image").className = "form-control";
-    document.getElementById("imgPreview").setAttribute("src", "");
-    document.getElementById("image").type = '';
-    document.getElementById("image").type = 'file';
+    let inputsElements = document.querySelectorAll(".form-control");
+    inputsElements.forEach(function (elemento) {
+        elemento.setAttribute("class", "form-control");
+        elemento.value = "";
+    });
+    document.querySelectorAll(".img-thumbnail")[0].setAttribute("src", "");
+    document.querySelectorAll("#image")[0].type = '';
+    document.querySelectorAll("#image")[0].type = 'file';
 }
 
