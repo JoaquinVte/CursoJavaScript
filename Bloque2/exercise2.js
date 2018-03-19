@@ -8,50 +8,50 @@ let comprobarNombre = function (event) {
     let nombre;
     nombre = document.getElementById("name");
     if (nombre.value.length == 0 || /^[^a-z]|[^a-z\s]/i.test(nombre.value)) {
-        nombre.className = "form-control is-invalid";
+        nombre.classList.add("is-invalid");
         valido = false;
     } else {
-        nombre.className = "form-control is-valid";
+        nombre.classList.add("is-valid");
     }
 }
 // Fecha → Requerida (formato: YYYY-mm-dd)
 let comprobarFecha = function (event) {
     let fecha = document.getElementById("date");
     if (fecha.value.length == 0 || !/^\d{4}-\d{2}-\d{2}$/.test(fecha.value)) {
-        fecha.className = fecha.getAttribute("class") + " is-invalid";
+        fecha.classList.add("is-invalid");
         valido = false;
     } else {
-        fecha.className = "form-control is-valid";
+        fecha.classList.add("is-valid");
     }
 }
 // Descripción → Requerida (contener al menos un carácter que no sea espacio)
 let comprobarDescripcion = function (event) {
     let descripcion = document.getElementById("description");
     if (descripcion.value.length == 0 || !/^[^\s]/.test(descripcion.value)) {
-        descripcion.className = "form-control is-invalid";
+        descripcion.classList.add("is-invalid");
         valido = false;
     } else {
-        descripcion.className = "form-control is-valid";
+        descripcion.classList.add("is-valid");
     }
 }
 // Precio → Requerido (Número entero o con 2 decimales)
 let comprobarPrecio = function (event) {
     let precio = document.getElementById("price");
     if (precio.value.length == 0 || !/^\d+(,[0-9]{1,2})?$/.test(precio.value)) {
-        precio.className = "form-control is-invalid";
+        precio.classList.add("is-invalid");
         valido = false;
     } else {
-        precio.className = "form-control is-valid";
+        precio.classList.add("is-valid");
     }
 }
 let comprobarImagen = function (event) {
     let imagen = document.getElementById("image");
     let imagenPreview = document.getElementById("imgPreview");
     if (imagenPreview.getAttribute("src") == "") {
-        imagen.className = "form-control is-invalid";
+        imagen.classList.add("is-invalid");
         valido = false;
     } else {
-        imagen.className = "form-control is-valid";
+        imagen.classList.add("is-valid");
     }
 }
 
@@ -177,7 +177,7 @@ function borrarCampos() {
 
     let inputsElements = document.querySelectorAll(".form-control");
     inputsElements.forEach(function (elemento) {
-        elemento.setAttribute("class", "form-control");
+        elemento.classList.remove("is-valid");
         elemento.value = "";
     });
     document.querySelectorAll(".img-thumbnail")[0].setAttribute("src", "");
