@@ -8,9 +8,11 @@ let comprobarNombre = function (event) {
     let nombre;
     nombre = document.getElementById("name");
     if (nombre.value.length == 0 || /^[^a-z]|[^a-z\s]/i.test(nombre.value)) {
+        nombre.classList.remove("is-valid");
         nombre.classList.add("is-invalid");
         valido = false;
     } else {
+        nombre.classList.remove("is-invalid");
         nombre.classList.add("is-valid");
     }
 }
@@ -18,9 +20,11 @@ let comprobarNombre = function (event) {
 let comprobarFecha = function (event) {
     let fecha = document.getElementById("date");
     if (fecha.value.length == 0 || !/^\d{4}-\d{2}-\d{2}$/.test(fecha.value)) {
+        fecha.classList.remove("is-valid");
         fecha.classList.add("is-invalid");
         valido = false;
     } else {
+        fecha.classList.remove("is-invalid");
         fecha.classList.add("is-valid");
     }
 }
@@ -28,9 +32,11 @@ let comprobarFecha = function (event) {
 let comprobarDescripcion = function (event) {
     let descripcion = document.getElementById("description");
     if (descripcion.value.length == 0 || !/^[^\s]/.test(descripcion.value)) {
+        descripcion.classList.remove("is-valid");
         descripcion.classList.add("is-invalid");
         valido = false;
     } else {
+        descripcion.classList.remove("is-invalid");
         descripcion.classList.add("is-valid");
     }
 }
@@ -38,9 +44,11 @@ let comprobarDescripcion = function (event) {
 let comprobarPrecio = function (event) {
     let precio = document.getElementById("price");
     if (precio.value.length == 0 || !/^\d+(,[0-9]{1,2})?$/.test(precio.value)) {
+        precio.classList.remove("is-valid");
         precio.classList.add("is-invalid");
         valido = false;
     } else {
+        precio.classList.remove("is-invalid");
         precio.classList.add("is-valid");
     }
 }
@@ -48,9 +56,11 @@ let comprobarImagen = function (event) {
     let imagen = document.getElementById("image");
     let imagenPreview = document.getElementById("imgPreview");
     if (imagenPreview.getAttribute("src") == "") {
+        imagen.classList.remove("is-valid");
         imagen.classList.add("is-invalid");
         valido = false;
     } else {
+        imagen.classList.remove("is-invalid");
         imagen.classList.add("is-valid");
     }
 }
