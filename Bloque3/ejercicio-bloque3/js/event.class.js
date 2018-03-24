@@ -25,7 +25,7 @@ class EventItem {
             if (response.ok) {
                 return (new EventItem(response.event));
             } else {
-                return (response.error);
+                throw response.error;
             }
         });
     }
@@ -64,9 +64,9 @@ class EventItem {
             var r = confirm("Seguro que quiere eliminar el evento " + this.name + "?.");
             if (r == true) {
                 this.delete().then(response => {
-                    alert(response);
                     eventosGlobal.splice(eventosGlobal.findIndex(e => e.id==this.id),1);
                     showEvents(eventosGlobal);
+                    alert(response);
                 });
             }
         });

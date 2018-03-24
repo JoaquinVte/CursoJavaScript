@@ -85,6 +85,7 @@ let añadirEvento = function (event) {
 
 
     if (valido) {
+        // Si el formulario es valido se crea un nuevo EventItem
         var nuevoEvento = new EventItem({
             name: document.getElementById("name").value,
             date: document.getElementById("date").value,
@@ -92,13 +93,11 @@ let añadirEvento = function (event) {
             image: document.getElementById("imgPreview").src,
             price: document.getElementById("price").value,
         });
+
+        // Se envia dicho evento al servidor
         nuevoEvento.post().then(evento => {
-            if (evento != null) {
-                borrarCampos();
-                eventosGlobal.push(evento);
-            }else{
-                console.log(evento);
-            }
+            borrarCampos();
+            eventosGlobal.push(evento);
         });
     }
 }
@@ -131,7 +130,6 @@ newEvent.image.addEventListener('change', event => {
         comprobarImagen(event);
     });
 });
-
 
 
 // Esta funcion borra los campos del formulario y resetea los atributos class modificados
