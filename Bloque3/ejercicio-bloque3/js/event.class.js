@@ -6,34 +6,36 @@ class EventItem {
         this.name = evento.name;
         this.date = new Date(evento.date);
         this.description = evento.description;
-        this.image = evento.image;
+        this.image = IMG + '/' + evento.image;
         this.price = new Number(evento.price);
     }
     static getEvents() {
-        return Http.ajax('GET', `${SERVER}/exercise3/events`).then(data => {
+        return Http.ajax('GET', `${SERVER}/events`).then(data => {
+            let respuestaEventos = [];
             if (data.ok) {
                 data.events.forEach(e => {
-                    eventos.push(new EventItem(e));
+                    respuestaEventos.push(new EventItem(e));
                 });
             }
+            return (respuestaEventos);
         }).catch(error => console.error(error));
     }
     post() {
-        return Http.ajax('POST', `${SERVER}/exercise3/events`, this).then((response) => {
-            if (reponse.ok) {
-                eventos.push(new EventItem(response.event));
+        return Http.ajax('POST', `${SERVER}/events`, this).then((response) => {
+            if (response.ok) {
+                return (new EventItem(response.event));
             } else {
-                console.log(response.error);
+                return (response.error);
             }
         });
     }
 
     delete() {
-        return Http.ajax('DELETE', `${SERVER}/exercise3/events/${this.id}`).then((response) => {
+        return Http.ajax('DELETE', `${SERVER}/events/${this.id}`).then((response) => {
             if (response.ok) {
-                console.log("Elemento eliminado");
+                return "Elemento eliminado";
             } else {
-                console.log(response.error);
+                return response.error;
             }
         });
     }
@@ -41,24 +43,7 @@ class EventItem {
     toHTML() {
         let card = document.createElement("div");
         card.classList.add("card");
-        // Añadir el resto de la estructura
-        //     <!-- <div class="card-deck mb-4">
-        //     <div class="card">
-        //       <img class="card-img-top" src="image_base64">
-        //       <div class="card-body">
-        //         <h4 class="card-title">Event’s name
-        //           <button class="btn btn-danger float-right">Delete</button>
-        //         </h4>
-        //         <p class="card-text">This is the description.</p>
-        //       </div>
-        //       <div class="card-footer">
-        //         <small class="text-muted">
-        // 		        dd/mm/yyyy
-        // 		        <span class="float-right">Price€</span>
-        //           </small>
-        //       </div>
-        //     </div>
-        //   </div> -->
+
         let cardImgTopElement = document.createElement("img");
         cardImgTopElement.classList.add("card-img-top");
         cardImgTopElement.setAttribute("src", this.image);
@@ -75,6 +60,17 @@ class EventItem {
         cardBodyButtonElement.classList.add("float-right");
         cardBodyButtonElement.textContent = "Delete";
 
+        cardBodyButtonElement.addEventListener('click', event => {
+            var r = confirm("Seguro que quiere eliminar el evento " + this.name + "?.");
+            if (r == true) {
+                this.delete().then(response => {
+                    alert(response);
+                    eventosGlobal.splice(eventosGlobal.findIndex(e => e.id==this.id),1);
+                    showEvents(eventosGlobal);
+                });
+            }
+        });
+
         let cardBodyPElement = document.createElement("p");
         cardBodyPElement.classList.add("card-text");
         cardBodyPElement.textContent = this.description;
@@ -88,7 +84,7 @@ class EventItem {
         cardFooterElement.classList.add("card-footer");
 
         let cardFooterSmall = document.createElement("small");
-        cardFooterSmall.classList.add(text - muted);
+        cardFooterSmall.classList.add("text-muted");
         cardFooterSmall.textContent = this.date.toLocaleDateString();
 
         let cardFooterSmallSpan = document.createElement("span");
@@ -100,5 +96,12 @@ class EventItem {
         card.appendChild(cardFooterElement);
 
         return card;
+    }
+
+    toString(){
+        return  this.name +
+                this.date +
+                this.description +
+                this.price;
     }
 }

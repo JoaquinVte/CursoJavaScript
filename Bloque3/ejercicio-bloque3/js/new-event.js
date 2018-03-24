@@ -85,32 +85,21 @@ let añadirEvento = function (event) {
 
 
     if (valido) {
-        // Compruebo si existe algun <div class="card-deck"> en la estructura
-        if (document.querySelectorAll(".card-deck:last-of-type").length == 0) {
-            // Creamos el primer card-deck y su hijo card. Este ultimo es enviado a la funcion completarCard para
-            // ser rellenado con los campos del formulario
-            contenedor.appendChild(document.createElement("div"));
-            let nodoCardDeck = contenedor.children[0]
-            nodoCardDeck.setAttribute("class", "card-deck");
-            nodoCardDeck.appendChild(document.createElement("div"));
-            completarCard(nodoCardDeck.children[0]);
-        } else {
-            // Compruebo si el ultimo card-deck contiene un hijo card, en caso afirmativo creo el 2º hijo y se envia
-            // a la funcion completarCard para ser rellenado con los campos del formulario
-            if (document.querySelectorAll(".card-deck:last-of-type")[0].childNodes.length == 1) {
-                let nodoCardDeck = document.querySelectorAll(".card-deck:last-of-type")[0];
-                nodoCardDeck.appendChild(document.createElement("div"));
-                completarCard(nodoCardDeck.children[1]);
-            } else {
-                // El ultimo card-deck esta completo y creamos uno nuevo, junto con su hijo card. Este ultimo es enviado 
-                // a la funcion completarCard para ser rellenado con los campos del formulario
-                let nodoCardDeck = document.createElement("div")
-                nodoCardDeck.setAttribute("class", "card-deck");
-                contenedor.appendChild(nodoCardDeck);
-                nodoCardDeck.appendChild(document.createElement("div"));
-                completarCard(nodoCardDeck.children[0]);
+        var nuevoEvento = new EventItem({
+            name: document.getElementById("name").value,
+            date: document.getElementById("date").value,
+            description: document.getElementById("description").value,
+            image: document.getElementById("imgPreview").src,
+            price: document.getElementById("price").value,
+        });
+        nuevoEvento.post().then(evento => {
+            if (evento != null) {
+                borrarCampos();
+                eventosGlobal.push(evento);
+            }else{
+                console.log(evento);
             }
-        }
+        });
     }
 }
 
@@ -143,43 +132,7 @@ newEvent.image.addEventListener('change', event => {
     });
 });
 
-// Esta funcion recibe un <div> y lo transforma en un <div class="card"> con su estructura segun se 
-// pide en el ejercicio.
-let completarCard = function (card) {
-    card.setAttribute("class", "card");
 
-    card.appendChild(document.createElement("img"));
-    card.children[0].setAttribute("class", "card-img-top");
-    card.children[0].setAttribute("src", document.getElementById("imgPreview").getAttribute("src"));
-
-    card.appendChild(document.createElement("div"));
-    let cardBody = card.children[1]
-    cardBody.setAttribute("class", "card-body");
-    cardBody.appendChild(document.createElement("h4"));
-    cardBody.children[0].setAttribute("class", "card-title");
-    cardBody.children[0].textContent = document.getElementById("name").value;
-    cardBody.appendChild(document.createElement("p"));
-    cardBody.children[1].setAttribute("class", "card-text");
-    cardBody.children[1].textContent = document.getElementById("description").value;
-
-    card.appendChild(document.createElement("div"));
-    let cardFooter = card.children[2]
-    cardFooter.setAttribute("class", "card-footer");
-    cardFooter.appendChild(document.createElement("small"));
-    cardFooter.children[0].setAttribute("class", "text-muted");
-
-    // Transforma la fecha al formato dd/mm/YYYY creando un objeto Date con la fecha introducida y
-    // generando la cadena con el formato pedido 
-    let fechaEvento = new Date(document.getElementById("date").value);
-    cardFooter.children[0].textContent = fechaEvento.toLocaleDateString();
-
-    cardFooter.children[0].appendChild(document.createElement("span"));
-    cardFooter.children[0].children[0].setAttribute("class", "float-right");
-    cardFooter.children[0].children[0].value = document.getElementById("price").value;
-
-    // Reiniciamos el formulario
-    borrarCampos()
-}
 
 // Esta funcion borra los campos del formulario y resetea los atributos class modificados
 function borrarCampos() {
