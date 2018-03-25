@@ -96,8 +96,9 @@ let añadirEvento = function (event) {
 
         // Se envia dicho evento al servidor
         nuevoEvento.post().then(evento => {
-            borrarCampos();
-            eventosGlobal.push(evento);
+            // borrarCampos(); No es necesario, ya que se redirige a index.html
+            // eventosGlobal.push(evento);
+            window.location.href = 'index.html';
         });
     }
 }
