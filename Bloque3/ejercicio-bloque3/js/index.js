@@ -7,7 +7,6 @@ var eventosGlobalAuxiliar;
 EventItem.getEvents().then(events => {
     eventosGlobal = events;
     eventosGlobalAuxiliar=eventosGlobal;
-    console.log("Hola");
     showEvents(eventosGlobal);
     //console.log(eventosGlobal);
 });
