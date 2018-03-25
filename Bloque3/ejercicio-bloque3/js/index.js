@@ -6,7 +6,7 @@ var eventosGlobal = [];
 EventItem.getEvents().then(events => {
     eventosGlobal = events;
     showEvents(eventosGlobal);
-    console.log(eventosGlobal);
+    //console.log(eventosGlobal);
 });
 
 // Funcion que muestra los eventos de un array pasados por parametro
