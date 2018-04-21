@@ -2,7 +2,8 @@
 
 import {SERVER} from './constants.js';
 import {IMG} from './constants.js';
-import {Http} from './http.class';
+import {Http} from './http.class.js';
+// import eventHandlebars from '../templates/event.handlebars';
 
 export class EventItem {
     constructor(evento) {
@@ -37,7 +38,7 @@ export class EventItem {
     delete() {
         return Http.ajax('DELETE', `${SERVER}/events/${this.id}`).then((response) => {
             if (response.ok) {
-                return "Elemento eliminado";
+                return true;
             } else {
                 return response.error;
             }
@@ -64,16 +65,16 @@ export class EventItem {
         cardBodyButtonElement.classList.add("float-right");
         cardBodyButtonElement.textContent = "Delete";
 
-        cardBodyButtonElement.addEventListener('click', event => {
-            var r = confirm("Seguro que quiere eliminar el evento " + this.name + "?.");
-            if (r == true) {
-                this.delete().then(response => {
-                    eventosGlobal.splice(eventosGlobal.findIndex(e => e.id==this.id),1);
-                    showEvents(eventosGlobal);
-                    alert(response);
-                });
-            }
-        });
+        // cardBodyButtonElement.addEventListener('click', event => {
+        //     var r = confirm("Seguro que quiere eliminar el evento " + this.name + "?.");
+        //     if (r == true) {
+        //         this.delete().then(response => {
+        //             eventosGlobal.splice(eventosGlobal.findIndex(e => e.id==this.id),1);
+        //             showEvents(eventosGlobal);
+        //             alert(response);
+        //         });
+        //     }
+        // });
 
         let cardBodyPElement = document.createElement("p");
         cardBodyPElement.classList.add("card-text");

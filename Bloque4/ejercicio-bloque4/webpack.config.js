@@ -24,9 +24,11 @@ module.exports = {
                     loader: 'babel-loader',
                     options: { presets: ['latest'] },
                 }],
+            },
+            {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
-            },
+            }
             // Aquí estarían los loaders para otros tipos de archivo
         ]
     },

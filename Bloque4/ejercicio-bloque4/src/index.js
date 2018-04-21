@@ -1,7 +1,7 @@
 "use strict";
 
-import {EventItem} from './event.class.js';
-import {Http} from './http.class.js';
+import { EventItem } from './event.class.js';
+import { Http } from './http.class.js';
 import styles from '../exercise3.css';
 
 // Variable global que almacena los eventos en un vector.
@@ -10,7 +10,7 @@ var eventosGlobalAuxiliar;
 
 EventItem.getEvents().then(events => {
     eventosGlobal = events;
-    eventosGlobalAuxiliar=eventosGlobal;
+    eventosGlobalAuxiliar = eventosGlobal;
     showEvents(eventosGlobal);
     //console.log(eventosGlobal);
 });
@@ -21,23 +21,30 @@ function showEvents(eventos) {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
-    eventos.forEach(e => {
-        if (document.querySelectorAll(".card-deck:last-of-type").length == 0) {
-            container.appendChild(document.createElement("div"));
-            let nodoCardDeck = container.children[0];
-            nodoCardDeck.setAttribute("class", "card-deck");
-            nodoCardDeck.appendChild(e.toHTML());
-        } else {
-            if (document.querySelectorAll(".card-deck:last-of-type")[0].childNodes.length == 1) {
-                let nodoCardDeck = document.querySelectorAll(".card-deck:last-of-type")[0];
-                nodoCardDeck.appendChild(e.toHTML());
-            } else {
-                let nodoCardDeck = document.createElement("div");
-                nodoCardDeck.setAttribute("class", "card-deck");
-                container.appendChild(nodoCardDeck);
-                nodoCardDeck.appendChild(e.toHTML());
-            }
+    // Modificado el codigo respecto del codigo del ejercicio 3 debido a problemas con 
+    // con el vector global. Este debe ser utilizado solo en el fichero index.js para evitar
+    // importaciones cruzadas
+    
+    let deck;
+    eventos.forEach((event, i) => {
+        if(i % 2 === 0) {
+            deck = document.createElement("div");
+            deck.classList.add("card-deck");
+            deck.classList.add("mb-4");
+            document.getElementById("eventsContainer").appendChild(deck);
         }
+        
+        let eventCard = event.toHTML();
+        eventCard.querySelector('.card-title .btn').addEventListener("click", e => {
+            let del = confirm("Are you sure you want delete this event?");
+            if(del) {
+                event.delete().then(() => {
+                    eventosGlobal.splice(eventosGlobal.indexOf(event), 1);
+                    showEvents(eventosGlobal);
+                });
+            }  
+        });
+        deck.appendChild(eventCard);
     });
 }
 
@@ -60,6 +67,6 @@ let search = document.getElementById("searchEvent");
 search.addEventListener("keyup", e => {
     let reg = new RegExp(document.getElementById("searchEvent").value, "i");
     eventosGlobalAuxiliar = eventosGlobal;
-    eventosGlobalAuxiliar=eventosGlobalAuxiliar.filter(ev => reg.test(ev.toString()));
+    eventosGlobalAuxiliar = eventosGlobalAuxiliar.filter(ev => reg.test(ev.toString()));
     showEvents(eventosGlobalAuxiliar);
 })
