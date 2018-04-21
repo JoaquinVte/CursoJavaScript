@@ -28,6 +28,10 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.handlebars$/,
+                loader: "handlebars-loader"
             }
             // Aquí estarían los loaders para otros tipos de archivo
         ]
