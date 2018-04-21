@@ -1,5 +1,9 @@
 'use strict';
 
+import {EventItem} from './event.class.js';
+import {Http} from './http.class.js';
+import styles from '../exercise3.css';
+
 let valido;
 
 //Nombre → Requerido (sólo puede contener letras y espacios y empezar por letra)

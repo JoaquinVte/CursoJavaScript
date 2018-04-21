@@ -1,6 +1,6 @@
 "use strict";
 
-class Http {
+export class Http {
     static ajax(method, url, data = null){
         return new Promise((resolve, reject) => {
             var http = new XMLHttpRequest();

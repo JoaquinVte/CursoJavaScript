@@ -1,5 +1,9 @@
 "use strict";
 
+import {EventItem} from './event.class.js';
+import {Http} from './http.class.js';
+import styles from '../exercise3.css';
+
 // Variable global que almacena los eventos en un vector.
 var eventosGlobal = [];
 var eventosGlobalAuxiliar;

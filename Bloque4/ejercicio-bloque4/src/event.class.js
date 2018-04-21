@@ -1,6 +1,10 @@
 "use strict";
 
-class EventItem {
+import {SERVER} from './constants.js';
+import {IMG} from './constants.js';
+import {Http} from './http.class';
+
+export class EventItem {
     constructor(evento) {
         this.id = evento.id;
         this.name = evento.name;
