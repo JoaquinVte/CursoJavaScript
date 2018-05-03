@@ -1,0 +1,11 @@
+.form-control.is-valid ~ .invalid-feedback {
+    display: none;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.navbar .form-inline {
+    margin-bottom: 0px;
+}

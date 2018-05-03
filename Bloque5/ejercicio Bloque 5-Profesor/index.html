@@ -1,0 +1,64 @@
+<html>
+
+<head>
+  <title>Events | Exercise 3</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="exercise4.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">Events manager</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link active" href="index.html">Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="new-event.html">New event</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="orderDate">Order by date</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="orderPrice">Order by price</a>
+        </li>
+      </ul>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="text" id="searchEvent" placeholder="Search" aria-label="Search">
+      </form>
+    </nav>
+
+    <div id="eventsContainer">
+      <!-- <div class="card-deck mb-4">
+        <div class="card">
+          <img class="card-img-top" src="image_base64">
+          <div class="card-body">
+            <h4 class="card-title">Event’s name
+              <button class="btn btn-danger float-right">Delete</button>
+            </h4>
+            <p class="card-text">This is the description.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">
+			        dd/mm/yyyy
+			        <span class="float-right">Price€</span>
+	          </small>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <script src="dist/common.bundle.js"></script>
+  <script src="dist/index.bundle.js"></script>
+</body>
+
+</html>
